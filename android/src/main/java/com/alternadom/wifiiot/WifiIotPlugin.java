@@ -177,6 +177,9 @@ public class WifiIotPlugin implements MethodCallHandler, EventChannel.StreamHand
             case "setMACFiltering":
                 setMACFiltering(poCall, poResult);
                 break;
+            case "calculateSignalLevel":
+
+                break;
             default:
                 poResult.notImplemented();
                 break;
@@ -188,18 +191,27 @@ public class WifiIotPlugin implements MethodCallHandler, EventChannel.StreamHand
      * @param poCall
      * @param poResult
      */
-    private void setMACFiltering(MethodCall poCall, Result poResult) {
-//        String sResult = sudoForResult("iptables --list");
-//        Log.d(this.getClass().toString(), sResult);
-        boolean bEnable = poCall.argument("state");
-
-
-        /// cat /data/misc/wifi_hostapd/hostapd.accept
-
-        Log.e(this.getClass().toString(), "TODO : Develop function to enable/disable MAC filtering...");
-
-        poResult.error("TODO", "Develop function to enable/disable MAC filtering...", null);
+    private void calculateSignalLevel(MethodCall poCall, Result poResult) {
+        poResult.success(moWiFiAPManager.calculateSignalLevel(poCall.argument("rssi"),poCall.argument("numLevels")));
     }
+
+    /**
+     *
+     * @param poCall
+     * @param poResult
+     */
+    private void setMACFiltering(MethodCall poCall, Result poResult) {
+        //        String sResult = sudoForResult("iptables --list");
+        //        Log.d(this.getClass().toString(), sResult);
+                boolean bEnable = poCall.argument("state");
+        
+        
+                /// cat /data/misc/wifi_hostapd/hostapd.accept
+        
+                Log.e(this.getClass().toString(), "TODO : Develop function to enable/disable MAC filtering...");
+        
+                poResult.error("TODO", "Develop function to enable/disable MAC filtering...", null);
+            }
 
 
     /**
